@@ -27,7 +27,6 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.3-fpm",
         "mysql"
     ],
     "arguments": {
