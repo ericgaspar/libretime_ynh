@@ -78,12 +78,13 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Creating a MySQL database..." --time --weight=1
+ynh_script_progression --message="Creating a PostgreSQL database..." --weight=2
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
+ynh_psql_test_if_first_run
+ynh_psql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -131,12 +132,21 @@ chown -R $app:www-data "$datadir"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-#ynh_script_progression --message="Adding a configuration file..." --time --weight=1
+ynh_script_progression --message="Adding a configuration file..." --time --weight=1
 
-#ynh_add_config --template="some_config_file" --destination="$final_path/some_config_file"
+ynh_add_config --template="../conf/airtime.conf" --destination="$final_path/etc/airtime/airtime.conf"
 
-#chmod 400 "$final_path/some_config_file"
-#chown $app:$app "$final_path/some_config_file"
+chmod 400 "$final_path/etc/airtime/airtime.conf"
+chown $app:$app "$final_path/etc/airtime/airtime.conf"
+
+#=================================================
+# DATABASE CONFIGURATION
+#=================================================
+ynh_script_progression --message="Generating database..." --weight=1
+
+pushd "$final_path"
+	yes | ./install -fiap
+popd
 
 #=================================================
 # SETUP SYSTEMD

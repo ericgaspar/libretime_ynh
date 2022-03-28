@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="icecast2"
+pkg_dependencies="icecast2 postgresql"
 
 #=================================================
 # PERSONAL HELPERS

@@ -1,7 +1,7 @@
-SOURCE_URL=https://github.com/libretime/libretime-debian-packaging/releases/download/debian%2F3.0.0_alpha.9-1_ltppa1/libretime_3.0.0.alpha.9-1.ltppa1_amd64.deb
-SOURCE_SUM=ef7df2b9da15db1f16347bf20e24025b865299966952eaa95ff4cd16e2a9bd98
+SOURCE_URL=https://github.com/libretime/libretime/releases/download/3.0.0-alpha.9/libretime-3.0.0-alpha.9.tar.gz
+SOURCE_SUM=dd4f3f193969e024b8f07ec005c8f7fe416c120757cf6953ae830084a3dffe67
 SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=deb
+SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=false
-SOURCE_FILENAME=libretime.deb
-SOURCE_EXTRACT=false
+SOURCE_FILENAME=
+SOURCE_EXTRACT=true
