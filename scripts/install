@@ -112,10 +112,10 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --time --weight=1
 
-ynh_add_config --template="../conf/airtime.conf" --destination="$final_path/etc/airtime/airtime.conf"
+ynh_add_config --template="../conf/airtime.conf" --destination="/etc/airtime/airtime.conf"
 
-chmod 400 "$final_path/etc/airtime/airtime.conf"
-chown $app:$app "$final_path/etc/airtime/airtime.conf"
+chmod 400 "/etc/airtime/airtime.conf"
+chown $app:$app "/etc/airtime/airtime.conf"
 
 #=================================================
 # DATABASE CONFIGURATION
