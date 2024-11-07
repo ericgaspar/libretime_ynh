@@ -57,6 +57,10 @@ pushd "$install_dir"
   	https://$domain
 popd
 
+pushd "$install_dir"
+ 	ynh_hide_warnings ynh_exec_as_app libretime-api migrate
+popd
+
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
