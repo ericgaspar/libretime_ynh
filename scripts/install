@@ -25,9 +25,7 @@ chown -R "$app:www-data" "$install_dir"
 ynh_script_progression "Adding $app's configuration files..."
 
 ynh_config_add --template="config.yml" --destination="/etc/libretime/config.yml"
-
-chmod 400 "/etc/libretime/config.yml"
-chown "$app:$app" "/etc/libretime/config.yml"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 #=================================================
 # SYSTEM CONFIGURATION
