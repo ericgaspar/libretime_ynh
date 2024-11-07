@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+#https://libretime.org/blog/2023/04/21/install-libretime-3.0.2-on-debian-11/
 
 packaging_format = 2
 
@@ -76,7 +77,7 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.apt]
-    packages = "postgresql"
+    packages = "postgresql, php-8.3"
     
     [resources.database]
     type = "postgresql"

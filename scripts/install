@@ -36,24 +36,32 @@ ynh_config_add_phpfpm
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
+#ynh_config_add_systemd
 
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+#yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 #=================================================
 # INSTALL LIBRETIME
 #=================================================
 ynh_script_progression "Installing the app..."
 
+# pushd "$install_dir"
+#  	LIBRETIME_PACKAGES_EXCLUDES='liquidsoap' \
+# 	./install \
+#   	--listen-port $port \
+#   	--storage-path $data_dir \
+#   	--in-place \
+#   	--no-setup-icecast \
+#   	--no-setup-postgresql \
+#   	--no-setup-rabbitmq
+#   	https://$domain
+# popd
+
 pushd "$install_dir"
- 	LIBRETIME_PACKAGES_EXCLUDES='liquidsoap' \
 	./install \
   	--listen-port $port \
   	--storage-path $data_dir \
   	--in-place \
-  	--no-setup-icecast \
-  	--no-setup-postgresql \
-  	--no-setup-rabbitmq
   	https://$domain
 popd
 
@@ -67,7 +75,6 @@ popd
 ynh_script_progression "Starting $app's systemd service..."
 
 #ynh_systemctl --service="$app" --action="start"
-systemctl restart libretime.target
 systemctl restart libretime.target
 
 #=================================================
