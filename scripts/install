@@ -10,6 +10,9 @@ source /usr/share/yunohost/helpers
 key=$(ynh_string_random --length=32)
 ynh_app_setting_set --app=$app --key=key --value=$key
 
+api_key=$(ynh_string_random --length=32)
+ynh_app_setting_set --app=$app --key=api_key --value=$api_key
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
