@@ -66,7 +66,9 @@ popd
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+#ynh_systemctl --service="$app" --action="start"
+systemctl restart libretime.target
+systemctl restart libretime.target
 
 #=================================================
 # END OF SCRIPT

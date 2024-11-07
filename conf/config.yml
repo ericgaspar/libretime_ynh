@@ -196,19 +196,20 @@ stream:
       # The default Icecast output stream
       - <<: *default_icecast_output
         enabled: true
-        public_url:
-        mount: main
+        public_url: https://__DOMAIN__/main.ogg
+        mount: main.org
         audio:
           format: ogg
           bitrate: 256
 
       # You can define extra outputs by reusing the default output using a yaml anchor
       - <<: *default_icecast_output
-        enabled: false
-        mount: main-low
+        enabled: true
+        public_url: https://__DOMAIN__/main.mp3
+        mount: main.mp3
         audio:
-          format: ogg
-          bitrate: 128
+          format: mp3
+          bitrate: 320
 
       - # Whether the output is enabled.
         # > default is false
