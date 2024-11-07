@@ -17,6 +17,63 @@ ynh_config_remove_nginx
 
 ynh_config_remove_phpfpm
 
+
+ynh_safe_rm "/etc/$app"
+
+#Remove configuration directories:
+ynh_safe_rm "/etc/airtime"
+ynh_safe_rm "/etc/libretime"
+
+#Remove logs directories:
+ynh_safe_rm "/var/log/airtime"
+ynh_safe_rm "/var/log/libretime"
+
+#Remove runtime directories:
+ynh_safe_rm "/var/lib/airtime"
+ynh_safe_rm "/var/lib/libretime"
+
+#Remove shared directories:
+ynh_safe_rm "/usr/share/airtime"
+ynh_safe_rm "/usr/share/libretime"
+
+#Remove systemd services files:
+ynh_safe_rm "/{etc,usr/lib}/systemd/system/airtime*"
+ynh_safe_rm "/{etc,usr/lib}/systemd/system/libretime*"
+
+#Remove nginx configuration files:
+ynh_safe_rm "/etc/nginx/sites-{available,enabled}/airtime*"
+ynh_safe_rm "/etc/nginx/sites-{available,enabled}/libretime*"
+
+#Remove php-fpm configuration files:
+ynh_safe_rm "/etc/php/*/fpm/pool.d/airtime*"
+ynh_safe_rm "/etc/php/*/fpm/pool.d/libretime*"
+
+#Remove logrotate configuration files:
+ynh_safe_rm "/etc/logrotate.d/airtime*"
+ynh_safe_rm "/etc/logrotate.d/libretime*"
+
+#Remove python packages:
+sudo pip3 uninstall \
+    libretime-analyzer \
+    libretime-api \
+    libretime-api-client \
+    libretime-celery \
+    libretime-playout \
+    libretime-shared \
+    libretime-worker
+
+# Check if we forgot old python packages.
+# Remove packages that show up with this commands.
+sudo pip3 freeze | grep libretime
+sudo pip3 freeze | grep airtime
+
+#Delete the rabbitmq vhost and user:
+sudo rabbitmqctl delete_vhost airtime
+sudo rabbitmqctl delete_vhost libretime
+
+sudo rabbitmqctl delete_user airtime
+sudo rabbitmqctl delete_user libretime
+
 #=================================================
 # END OF SCRIPT
 #=================================================
